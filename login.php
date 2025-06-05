@@ -1,3 +1,33 @@
+<?php  
+
+session_start();
+include ("includes/db.php");
+
+if(isset($_POST['signin'])){
+    $email = mysqli_real_escape_string($conn, $_POST['email']);
+    $password = $_POST['password'];
+
+    $query = "SELECT * FROM users WHERE email= '$email'";
+    $result = mysqli_query($conn, $query);
+
+    if(mysqli_num_rows($result) > 0){
+        $user = mysqli_fetch_assoc($result);
+        if(password_verify($password, $user['password'])){
+            $_SESSION['user_id'] = $user['id'];
+            $_SESSION['user_name'] = $user['name'];
+            $_SESSION['user_role'] = $user['role'];
+            header('location: index.php');
+            exit();
+        }else {
+            $error = "Invalid Password";
+        }
+    } else{
+        $error = "User not found! please register first.";
+    }
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,7 +35,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>login page</title>
-    <link rel="stylesheet" href="/attendanceportal/Attendance-portal/css/style.css">
+    <link rel="stylesheet" href="/attendanceportal/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
 </head>
 
@@ -42,7 +72,7 @@
         </div>
     </div>
 
-    <script src="/attendanceportal/Attendance-portal/js/script.js"></script>
+     <script src="/attendanceportal/js/script.js"></script>
 </body>
 
 </html>

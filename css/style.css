@@ -200,6 +200,144 @@ button:hover {
 
 /* log-in page style end here */
 
+/* Responsive Styles for Login and Register Pages */
+@media screen and (max-width: 768px) {
+    .container {
+        width: 90%;
+        max-width: 450px;
+        margin: 20px auto;
+        padding: 1rem;
+    }
+
+    form {
+        margin: 0 1rem;
+    }
+
+    .form-title {
+        font-size: 1.3rem;
+        padding: 1rem;
+    }
+
+    .input-group {
+        padding: 0.6em 0.1em;
+    }
+
+    .icons i {
+        padding: 0.6rem 1.2rem;
+        font-size: 1.3rem;
+        margin: 0 10px;
+    }
+
+    .links {
+        padding: 0 2rem;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .btn {
+        font-size: 1rem;
+        padding: 0.5em 0;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .container {
+        width: 95%;
+        margin: 10px auto;
+        padding: 0.8rem;
+    }
+
+    form {
+        margin: 0 0.5rem;
+    }
+
+    .form-title {
+        font-size: 1.2rem;
+        padding: 0.8rem;
+    }
+
+    .input-group {
+        padding: 0.5em 0.1em;
+    }
+
+    input {
+        font-size: 14px;
+    }
+
+    .recover {
+        font-size: 0.9rem;
+    }
+
+    .btn {
+        font-size: 0.9rem;
+    }
+
+    .or {
+        font-size: 1rem;
+        margin: 0.8rem 0;
+    }
+
+    .icons i {
+        padding: 0.5rem 1rem;
+        font-size: 1.2rem;
+        margin: 0 8px;
+    }
+
+    .links {
+        padding: 0 1rem;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .links p, .links a {
+        margin: 0.3rem 0;
+    }
+
+    .error p {
+        font-size: 12px;
+    }
+}
+
+/* For very small screens */
+@media screen and (max-width: 320px) {
+    .container {
+        width: 100%;
+        margin: 5px auto;
+        padding: 0.6rem;
+        border-radius: 6px;
+    }
+
+    .form-title {
+        font-size: 1.1rem;
+        padding: 0.6rem;
+    }
+
+    .input-group {
+        margin: 0.8em auto;
+    }
+
+    .icons i {
+        padding: 0.4rem 0.8rem;
+        font-size: 1.1rem;
+        margin: 0 5px;
+    }
+}
+
+/* Ensure the page takes full height on mobile */
+@media screen and (max-height: 700px) {
+    body {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+    }
+
+    .container {
+        margin: 10px auto;
+    }
+}
+
 /* 
 nav bar color:  #f4f4f4; */
 
@@ -219,6 +357,8 @@ body {
     height: 100vh;
     padding: 20px;
     position: fixed;
+    display: flex;
+    flex-direction: column;
 }
 
 .sidebar h2 {
@@ -229,6 +369,7 @@ body {
 .sidebar ul {
     list-style-type: none;
     padding: 0;
+    flex: 1;
 }
 
 .sidebar ul li a {
@@ -504,5 +645,101 @@ adding style for nav icons */
   .fa-bars {
     font-size: 30px; 
   }
+}
+
+/* User Profile Styles */
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.sidebar ul {
+    flex: 1;
+}
+
+.user-profile {
+    padding: 15px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    margin-top: auto;
+}
+
+.profile-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.profile-img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.profile-name {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.user-name {
+    color: #fff;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.user-role {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 12px;
+}
+
+.logout-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    padding: 8px;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.logout-btn:hover {
+    background: rgba(255, 59, 59, 0.2);
+}
+
+.logout-btn i {
+    font-size: 14px;
+}
+
+/* Responsive adjustments for user profile */
+@media screen and (max-width: 768px) {
+    .user-profile {
+        padding: 10px;
+    }
+
+    .profile-info {
+        padding: 8px;
+    }
+
+    .profile-img {
+        width: 35px;
+        height: 35px;
+    }
+
+    .user-name {
+        font-size: 13px;
+    }
+
+    .user-role {
+        font-size: 11px;
+    }
 }
 

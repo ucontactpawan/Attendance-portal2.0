@@ -1,3 +1,37 @@
+<?php  
+session_start();
+include ('includes/db.php');
+
+if(isset($_POST['signup'])){
+    $name  = $_POST['name'];
+    $email = $_POST['email'];
+    $password = password_hash($_POST['password'],PASSWORD_DEFAULT);
+    $role = 'employee'; // Default role for new users
+
+    //Now check if email is already registered
+    $check_query = "SELECT * FROM users WHERE email = '$email'";
+    $check_result = mysqli_query($conn, $check_query);
+
+    if(mysqli_num_rows($check_result) > 0){
+        $error = "Email already registered. Please use a different email.";
+    }else{
+        // Insert the new user into the database
+        $query = "INSERT INTO users (name,email,password,role) VALUES ('$name', '$email', '$password', '$role')";
+        if(mysqli_query($conn, $query)){
+            $_SESSION['user_id'] = mysqli_insert_id($conn); // Get the last inserted user ID
+            $_SESSION['user_name'] = $name; // Store the user's name in session
+            $_SESSION['user_role']= $role; // Store the user's role in session
+            header("Location: index.php"); // Redirect to the index page
+            exit();
+        }else{
+            $error = "Registration failed!: " . mysqli_error($conn);
+        }
+    }
+}
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,7 +39,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>register page</title>
-    <link rel="stylesheet" href="/attendanceportal/Attendance-portal/css/style.css">
+    <link rel="stylesheet" href="/attendanceportal/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
 </head>
 
@@ -45,8 +79,7 @@
             <a href="register.php">Sign Up</a>
         </div>
     </div>
-
-    <script src="/attendanceportal/Attendance-portal/js/script.js"></script>
+    <script src="/attendanceportal/js/script.js"></script>
 </body>
 
 </html>

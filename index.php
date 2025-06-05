@@ -1,4 +1,14 @@
-<?php include('includes/db.php'); ?>
+<?php 
+session_start();
+if(!isset($_SESSION['user_id'])){
+  header("Locarion: login.php");
+  exit();
+}
+
+include('includes/db.php');
+include('includes/navbar.php');
+include('includes/footer.php');
+?>
 
 <!-- Dashboard page -->
 
@@ -9,12 +19,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Dashboard</title>
-    <link rel="stylesheet" href="/attendanceportal/Attendance-portal/css/style.css">
+    <link rel="stylesheet" href="/attendanceportal/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 </head>
 
-<body>
-    <div class="sidebar">
+<body>   
+   <div class="sidebar">
         <h2>PORTAL</h2>
         <ul>
             <li><a href="index.php" class="active">Dashboard</a></li>
@@ -24,9 +34,19 @@
             <li><a href="sheet_report.php">Sheet Report</a></li>
             <li><a href="attendance_logs.php">Attendance Logs</a></li>
         </ul>
+        <div class="user-profile">
+            <div class="profile-info">
+                <img src="https://ui-avatars.com/api/?name=<?php echo urlencode($_SESSION['user_name']); ?>&background=random" alt="Profile" class="profile-img">
+                <div class="profile-name">
+                    <span class="user-name"><?php echo $_SESSION['user_name']; ?></span>
+                    <span class="user-role"><?php echo ucfirst($_SESSION['user_role']); ?></span>
+                </div>
+            </div>
+            <a href="logout.php" class="logout-btn">
+                <i class="fas fa-sign-out-alt"></i> Logout
+            </a>
+        </div>
     </div>
-
-    <?php include('includes/navbar.php'); ?>
 
     <div class="main-content">
         <div class="header">
@@ -84,10 +104,9 @@
                 <h3 id="availableSchedules">5</h3>
             </div>
         </div>
-        <?php include('includes/footer.php'); ?>
     </div>
 
-    <script src="/attendanceportal/Attendance-portal/js/script.js"></script>
+    <script src="/attendanceportal/js/script.js"></script>
 
 </body>
 
